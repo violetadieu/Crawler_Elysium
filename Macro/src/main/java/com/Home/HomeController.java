@@ -16,9 +16,18 @@ public class HomeController {
     public String Home(){
 
         ArrayList<String>UrlList=searchService.ParseUrl();
+        int number=1;
 
-        searchService.SendRequest(UrlList);
-
-        return "index";
+        while(true) {
+            try {
+                searchService.SendRequest(UrlList);
+                Thread.sleep(600000);
+                System.out.println(number);
+                number++;
+            }
+            catch (Exception e) {
+                return "index";
+            }
+        }
     }
 }
