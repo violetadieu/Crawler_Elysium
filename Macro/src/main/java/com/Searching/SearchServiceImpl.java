@@ -4,7 +4,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +29,17 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public void SendRequest() {
+    public void SendRequest(ArrayList<String>UrlArray) {
+        for(int i=0;i<UrlArray.size();i++){
+            String url=UrlArray.get(i);
+            try {
+                Document tmp=Jsoup.connect(url).get();
+                System.out.println(url);
+            } catch (IOException e) {
+                System.out.println("Connection failed");
+                e.printStackTrace();
+            }
 
+        }
     }
 }
