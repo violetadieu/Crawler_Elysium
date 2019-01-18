@@ -11,8 +11,7 @@ import java.util.ArrayList;
 public class SearchServiceImpl implements SearchService {
 
     @Override
-    public ArrayList<String> ParseUrl_total() {//url 저장
-        ArrayList<String> stringArrayList=new ArrayList<String>();
+    public ArrayList<String> ParseUrl_total(ArrayList<String> AL) {//url 저장
         String URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=팀엘리시움";//통합검색
         Document doc = null;
         try {
@@ -23,21 +22,43 @@ public class SearchServiceImpl implements SearchService {
         Elements elems = doc.select("a[href]:contains(팀엘리시움)");
         for(Element elem:elems){
             String input=elem.attr("abs:href");
-            stringArrayList.add(input);
+            AL.add(input);
         }
-        return stringArrayList;
+        return AL;
     }
 
     @Override
-    public ArrayList<String> ParseUrl_blog() {
+    public ArrayList<String> ParseUrl_blog(ArrayList<String> AL) {
         String URL="https://search.naver.com/search.naver?where=post&sm=tab_jum&query=팀엘리시움";//블로그
-        return null;
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(URL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Elements elems = doc.select("a[href]:contains(팀엘리시움)");
+        for(Element elem:elems){
+            String input=elem.attr("abs:href");
+            AL.add(input);
+        }
+        return AL;
     }
 
     @Override
-    public ArrayList<String> ParseUrl_website() {
+    public ArrayList<String> ParseUrl_website(ArrayList<String> AL) {
         String URL="https://search.naver.com/search.naver?where=webkr&sm=tab_jum&query=팀엘리시움";
-        return null;
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(URL).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Elements elems = doc.select("a[href]:contains(팀엘리시움)");
+        for(Element elem:elems){
+            String input=elem.attr("abs:href");
+            AL.add(input);
+        }
+        return AL;
     }
 
     @Override

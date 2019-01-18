@@ -15,10 +15,12 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Home(){
 
-        ArrayList<String>UrlList=searchService.ParseUrl_total();
-
         while(true) {
             try {
+                ArrayList<String>UrlList=new ArrayList<String>();
+                searchService.ParseUrl_total(UrlList);
+                searchService.ParseUrl_blog(UrlList);
+                searchService.ParseUrl_website(UrlList);
                 searchService.SendRequest(UrlList);
                 System.out.println(number);
                 number++;
