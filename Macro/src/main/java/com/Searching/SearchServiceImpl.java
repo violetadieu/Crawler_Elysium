@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class SearchServiceImpl implements SearchService {
 
     @Override
-    public ArrayList<String> ParseUrl() {//url 저장
+    public ArrayList<String> ParseUrl_total() {//url 저장
         ArrayList<String> stringArrayList=new ArrayList<String>();
-        String URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=팀엘리시움";
+        String URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=팀엘리시움";//통합검색
         Document doc = null;
         try {
             doc = Jsoup.connect(URL).get();
@@ -29,11 +29,24 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public ArrayList<String> ParseUrl_blog() {
+        String URL="https://search.naver.com/search.naver?where=post&sm=tab_jum&query=팀엘리시움";//블로그
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> ParseUrl_website() {
+        String URL="https://search.naver.com/search.naver?where=webkr&sm=tab_jum&query=팀엘리시움";
+        return null;
+    }
+
+    @Override
     public void SendRequest(ArrayList<String>UrlArray) {
         for(int i=0;i<UrlArray.size();i++){
             String url=UrlArray.get(i);
             try {
                 Document tmp=Jsoup.connect(url).get();
+                System.out.println(url);
             } catch (IOException e) {
                 System.out.println("Connection failed");
                 e.printStackTrace();

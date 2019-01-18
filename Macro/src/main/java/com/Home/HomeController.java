@@ -11,19 +11,18 @@ import java.util.ArrayList;
 public class HomeController {
     @Autowired
     SearchServiceImpl searchService;
-
+    int number=1;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Home(){
 
-        ArrayList<String>UrlList=searchService.ParseUrl();
-        int number=1;
+        ArrayList<String>UrlList=searchService.ParseUrl_total();
 
         while(true) {
             try {
                 searchService.SendRequest(UrlList);
-                Thread.sleep(600000);
                 System.out.println(number);
                 number++;
+                Thread.sleep(300000);
             }
             catch (Exception e) {
                 return "index";
