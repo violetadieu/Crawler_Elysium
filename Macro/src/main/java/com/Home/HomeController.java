@@ -1,5 +1,6 @@
 package com.Home;
 
+import com.MacAddress.GetMacAddressImpl;
 import com.Searching.SearchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,20 +12,25 @@ import java.util.ArrayList;
 public class HomeController {
     @Autowired
     SearchServiceImpl searchService;
+    @Autowired
+    GetMacAddressImpl getMacAddress;
     int number=1;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Home(){
-
+        String FirstMAC=getMacAddress.getAddress();
         while(true) {
             try {
                 ArrayList<String>UrlList=new ArrayList<String>();
                 searchService.ParseUrl_total(UrlList);
                 searchService.ParseUrl_blog(UrlList);
                 searchService.ParseUrl_website(UrlList);
-                searchService.SendRequest(UrlList);
                 System.out.println(number);
+                System.out.println(FirstMAC);
+                if(FirstMAC!=getMacAddress.getAddress()) {
+                    FirstMAC=getMacAddress.getAddress();
+                    searchService.SendRequest(UrlList);
+                }
                 number++;
-                Thread.sleep(300000);
             }
             catch (Exception e) {
                 return "index";

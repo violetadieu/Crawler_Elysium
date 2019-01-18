@@ -4,4 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="SearchService" class="com.Searching.SearchServiceImpl"/>
+    <bean id="GetMacAddress" class="com.MacAddress.GetMacAddressImpl"/>
+
 </beans>
