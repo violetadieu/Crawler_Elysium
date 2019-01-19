@@ -14,23 +14,22 @@ public class HomeController {
     SearchServiceImpl searchService;
     @Autowired
     GetMacAddressImpl getMacAddress;
-    int number=1;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Home(){
         String FirstMAC=getMacAddress.getAddress();
+        System.out.println(FirstMAC);
         while(true) {
             try {
                 ArrayList<String>UrlList=new ArrayList<String>();
                 searchService.ParseUrl_total(UrlList);
                 searchService.ParseUrl_blog(UrlList);
                 searchService.ParseUrl_website(UrlList);
-                System.out.println(number);
-                System.out.println(FirstMAC);
-                if(FirstMAC!=getMacAddress.getAddress()) {
+                searchService.SendRequest(UrlList);
+                Thread.sleep(30000);
+                if(!(FirstMAC.equals(getMacAddress.getAddress()))) {
                     FirstMAC=getMacAddress.getAddress();
-                    searchService.SendRequest(UrlList);
+                    System.out.println(FirstMAC);
                 }
-                number++;
             }
             catch (Exception e) {
                 return "index";

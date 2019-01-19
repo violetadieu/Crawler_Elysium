@@ -69,7 +69,7 @@ public class SearchServiceImpl implements SearchService {
             String url=UrlArray.get(i);
             try {
                 Document tmp=Jsoup.connect(url).get();
-                System.out.println(url);
+                //System.out.println(url);
             } catch (IOException e) {
                 System.out.println("Connection failed");
                 e.printStackTrace();
