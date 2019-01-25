@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 @Controller
@@ -25,11 +27,12 @@ public class HomeController {
                 searchService.ParseUrl_blog(UrlList);
                 searchService.ParseUrl_website(UrlList);
                 searchService.SendRequest(UrlList);
-                Thread.sleep(30000);
+                Thread.sleep(15*1000);
                 if(!(FirstMAC.equals(getMacAddress.getAddress()))) {
                     FirstMAC=getMacAddress.getAddress();
                     System.out.println(FirstMAC);
                 }
+                UrlList=null;
             }
             catch (Exception e) {
                 return "index";
