@@ -30,9 +30,5 @@ public class GetMacAddressImpl implements GetMacAddress {
         }
         return null;
     }
-
-    @Override
-    public boolean vaildate(String Address) {
-        return false;
-    }
+    
 }
