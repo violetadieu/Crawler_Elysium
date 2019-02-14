@@ -30,5 +30,5 @@ public class GetMacAddressImpl implements GetMacAddress {
         }
         return null;
     }
-    
+
 }

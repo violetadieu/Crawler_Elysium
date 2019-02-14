@@ -68,11 +68,11 @@ public class SearchServiceImpl implements SearchService {
         for(int i=0;i<UrlArray.size();i++){
             String url=UrlArray.get(i);
             try {
-                Document tmp=Jsoup.connect(url).timeout(200*1000).get();
+                Document tmp=Jsoup.connect(url).timeout(200*1000).get();//요청 전송 및 타임아웃 시간 설정
                 System.out.println(url);
             } catch (IOException e) {
                 System.out.println("Connection failed");
-                e.printStackTrace();
+                return;
             }
 
         }
