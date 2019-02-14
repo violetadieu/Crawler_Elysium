@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class SearchServiceImpl implements SearchService {
 
     @Override
-    public ArrayList<String> ParseUrl_total(ArrayList<String> AL) {//url 저장
-        String URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query=팀엘리시움";//통합검색
+    public ArrayList<String> ParseUrl_total(ArrayList<String> AL,String target) {//url 저장
+        String URL = "https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8&query="+target;//통합검색
         Document doc = null;
         try {
             doc = Jsoup.connect(URL).get();
@@ -30,8 +30,8 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public ArrayList<String> ParseUrl_blog(ArrayList<String> AL) {
-        String URL="https://search.naver.com/search.naver?where=post&sm=tab_jum&query=팀엘리시움";//블로그
+    public ArrayList<String> ParseUrl_blog(ArrayList<String> AL,String target) {
+        String URL="https://search.naver.com/search.naver?where=post&sm=tab_jum&query="+target;//블로그
         Document doc = null;
         try {
             doc = Jsoup.connect(URL).get();
@@ -47,8 +47,8 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public ArrayList<String> ParseUrl_website(ArrayList<String> AL) {
-        String URL="https://search.naver.com/search.naver?where=webkr&sm=tab_jum&query=팀엘리시움";
+    public ArrayList<String> ParseUrl_website(ArrayList<String> AL,String target) {
+        String URL="https://search.naver.com/search.naver?where=webkr&sm=tab_jum&query="+target;
         Document doc = null;
         try {
             doc = Jsoup.connect(URL).get();
@@ -71,6 +71,7 @@ public class SearchServiceImpl implements SearchService {
                 Document tmp=Jsoup.connect(url).timeout(200*1000).get();//요청 전송 및 타임아웃 시간 설정
                 System.out.println(url);
             } catch (IOException e) {
+                System.out.println(url);
                 System.out.println("Connection failed");
                 return;
             }

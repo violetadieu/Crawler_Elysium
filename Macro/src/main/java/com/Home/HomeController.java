@@ -19,10 +19,13 @@ public class HomeController {
     public String Home(){
         String FirstMAC=getMacAddress.getAddress();//프로그램 시작 시 mac 주소 저장
         System.out.println(FirstMAC);
+        String[] TargetList={"팀엘리시움","폼+체커","POM+CHECKER"};//검색어목록
         ArrayList<String>UrlList=new ArrayList<String>();
-        searchService.ParseUrl_total(UrlList);//통합검색
-        searchService.ParseUrl_blog(UrlList);//블로그검색
-        searchService.ParseUrl_website(UrlList);//웹사이트검색 및 url 주소 저장
+        for(int i=0;i<TargetList.length;i++) {
+            searchService.ParseUrl_total(UrlList,TargetList[i]);//통합검색
+            searchService.ParseUrl_blog(UrlList,TargetList[i]);//블로그검색
+            searchService.ParseUrl_website(UrlList,TargetList[i]);//웹사이트검색 및 url 주소 저장
+        }
         while(true) {
             try {
                 searchService.SendRequest(UrlList);//요청 전송
