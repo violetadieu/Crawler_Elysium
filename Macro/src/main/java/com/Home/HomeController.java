@@ -29,7 +29,7 @@ public class HomeController {
         while(true) {
             try {
                 searchService.SendRequest(UrlList);//요청 전송
-                Thread.sleep(15*1000);//비정상적인 트래픽 전송을 막기위한 지연
+                Thread.sleep(150*1000);//비정상적인 트래픽 전송을 막기위한 지연
                 if(!(FirstMAC.equals(getMacAddress.getAddress()))) {//linkliar로 mac주소 바뀐 경우
                     FirstMAC=getMacAddress.getAddress();//현재의 mac주소
                     System.out.println(FirstMAC);
